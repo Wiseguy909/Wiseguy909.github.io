@@ -1,0 +1,625 @@
+<html>
+<head>
+	<style>
+	*{padding: 0; margin:0;}
+	canvas{ background: #eee; display: block; margin: 0 auto;}
+	</style>
+</head>
+<body>
+<canvas id= "myCanvas" width="800" height="600"></canvas>
+<script type="text/javascript">
+let canvas = document.getElementById("myCanvas");
+let ctx = canvas.getContext("2d");
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false);
+document.addEventListener("mousedown", getMouseDown, false);
+document.addEventListener("mouseup", getMouseUp, false);
+document.addEventListener("mousemove", getPosition, false);
+let mouseIsDown = false;
+let mouseX = 0;
+let mouseY = 0;
+let leftPressed = false;
+let rightPressed = false;
+let hasStarted = false;
+let notInHelp = true;
+let fps = 60;
+let playerX = 400;
+let playerY = 540;
+let sprites = new Image();
+let spritesInverted = new Image();
+sprites.src = "spritesheet-1.png"
+spritesInverted.src = "spritesheetInverted.png"
+let animationCounter = 0;
+let animationSpeed = 5;
+let animationFrame = 1;
+let bullets = [];
+let isFiring = false;
+let bulletCounter = 40;
+let canFire = true;
+let fireRate = 40;
+let stars = [];
+let enemies = [];
+let bulletSpeed = 2;
+let bulletSize = 2;
+let livesCounter = 3;
+let score = 0;
+let pu3on = false;
+
+let powerups = [];
+let activePowerUps = [];
+let globalCounter = 0;
+
+function getPosition(event)
+{
+  mouseX = event.x - canvas.offsetLeft;
+  mouseY = event.y - canvas.offsetTop;
+}
+
+function getMouseDown(e)
+{
+	mouseIsDown = true;
+}
+
+function getMouseUp(e)
+{
+	mouseIsDown = false;
+}
+
+function PowerUp(x,y,type,ttl)
+{
+	this.x = x;
+	this.y = y;
+	this.type = type;
+	this.ttl = ttl;
+}
+
+function handlePowerUps()
+{
+	if(globalCounter % 100 == 0)
+	{
+		let chance = Math.floor(Math.random() * 4);
+		if(chance == 0)
+		{
+			let powerUpType = Math.floor(Math.random() * 3 + 1);
+			let x = Math.floor(Math.random() * 750);
+			powerups.push(new PowerUp(x, -50, powerUpType, 600));
+		}
+	}
+	for(let i = 0; i < powerups.length; i++)
+		{
+			ctx.fillStyle = "rgba(255,0,0,.3)";
+			ctx.fillRect(powerups[i].x,powerups[i].y,25,25);
+			ctx.fillStyle = "rgb(0,255,0)";
+			ctx.font = "20px Arial";
+			ctx.fillText(powerups[i].type,powerups[i].x + 5,powerups[i].y + 20);
+			powerups[i].y += 10;
+			
+			if(powerups[i].x < playerX + 50 &&
+			   powerups[i].x + 25 > playerX &&
+			   powerups[i].y < playerY + 50 &&
+			   powerups[i].y + 25 > playerY)
+			   {
+					//collision detected
+					activePowerUps.push(new PowerUp(0,0,
+									powerups[i].type,powerups[i].ttl));
+					powerups.splice(i,1);
+			   }
+		}
+		for(let i = 0; i < activePowerUps.length; i++)
+		{
+			if(activePowerUps[i].type == 1)
+			{
+				fireRate = 10;
+				activePowerUps[i].ttl--;
+				
+				ctx.fillStyle = "rgba(255,0,0,.3)";
+				ctx.fillRect(10,50,25,25);
+				ctx.fillStyle = "rgb(0,255,0)";
+				ctx.font = "20px Arial";
+				ctx.fillText(activePowerUps[i].type, 10 + 5, 50 + 20);
+				
+				if(activePowerUps[i].ttl <= 0)
+				{
+					fireRate = 40;
+					activePowerUps.splice(i,1);
+				}
+			}
+			if(activePowerUps[i].type == 2)
+			{
+				bulletSpeed = 5;
+				bulletSize = 6;
+				activePowerUps[i].ttl--;
+				
+				ctx.fillStyle = "rgba(255,0,0,.3)";
+				ctx.fillRect(10,80,25,25);
+				ctx.fillStyle = "rgb(0,255,0)";
+				ctx.font = "20px Arial";
+				ctx.fillText(activePowerUps[i].type, 10 + 5, 80 + 20);
+				
+				if(activePowerUps[i].ttl <= 0)
+				{
+					bulletSpeed = 2;
+					bulletSize = 2;
+					activePowerUps.splice(i,1);
+				}
+			}
+			if(activePowerUps[i].type == 3)
+			{
+				pu3on = true;
+				activePowerUps[i].ttl--;
+				
+				ctx.fillStyle = "rgba(255,0,0,.3)";
+				ctx.fillRect(10,110,25,25);
+				ctx.fillStyle = "rgb(0,255,0)";
+				ctx.font = "20px Arial";
+				ctx.fillText(activePowerUps[i].type, 10 + 5, 110 + 20);
+				
+				if(activePowerUps[i].ttl <= 0)
+				{
+					pu3on = false;
+					activePowerUps.splice(i,1);
+				}
+			}
+		}
+}
+
+function playSound(source, vol)
+{
+	var sound = new Audio();
+	sound.src = source;
+	sound.volume = vol;
+	sound.play();
+}
+
+function Enemy(x,y,speed,health,type,rotation,
+				frame,numFrames,counter)
+{
+	this.x = x;
+	this.y = y;
+	this.speed = speed;
+	this.health = health;
+	this.type = type;
+	this.rotation = rotation;
+	this.frame = frame;
+	this.numFrames = numFrames;
+	this.counter = counter;
+}
+
+enemies.push(new Enemy(400,0,5,2,1,0,0,3,0));
+
+function drawEnemies()
+{
+	if(globalCounter % 25 == 0)
+	{
+		let chance = Math.floor(Math.random() * 2);
+		if(chance == 0)
+		{
+			let x = Math.floor(Math.random() * 750);
+			//change 1 to enemy type number
+			let type = Math.floor(Math.random() * 4) + 1;
+			if(type == 1)
+			{
+				enemies.push(new Enemy(x, -50, 5, 2, type, 0, 0, 3, 0));
+			}
+			else if(type == 2 || type == 3)
+			{
+				enemies.push(new Enemy(x, -50, 5, 2, type, 0, 0, 4, 0));
+			}
+			else if(type == 4)
+			{
+				enemies.push(new Enemy(x, -50, 5, 2, type, 0, 0, 1, 0));
+			}
+		}
+	}
+	
+	for(let i = 0; i < enemies.length; i++)
+	{
+		if(enemies[i].type == 1)
+		{
+			ctx.drawImage(sprites, 64 + (enemies[i].frame * 32), 128, 32, 32,
+					enemies[i].x, enemies[i].y, 50, 50);
+			enemies[i].counter++;
+			if(enemies[i].counter % 5 == 0)
+			{
+				enemies[i].frame++;
+				if(enemies[i].frame >= enemies[i].numFrames)
+				{
+					enemies[i].frame = 0;
+				}
+			}
+		}
+		
+		if(enemies[i].type == 2)
+		{
+			//change starting x and y for each type
+			//64 + (enemies[i].frame * 32)
+			ctx.drawImage(sprites, 0 + (enemies[i].frame * 32), 96, 32, 32,
+					enemies[i].x, enemies[i].y, 50, 50);
+			enemies[i].counter++;
+			if(enemies[i].counter % 5 == 0)
+			{
+				enemies[i].frame++;
+				if(enemies[i].frame >= enemies[i].numFrames)
+				{
+					enemies[i].frame = 0;
+				}
+			}
+		}
+		if(enemies[i].type == 3)
+		{
+			//change starting x and y for each type
+			//64 + (enemies[i].frame * 32)
+			ctx.drawImage(spritesInverted, 384 + (enemies[i].frame * 32), 480, 32, 32,
+					enemies[i].x, enemies[i].y, 50, 50);
+			enemies[i].counter++;
+			if(enemies[i].counter % 5 == 0)
+			{
+				enemies[i].frame++;
+				if(enemies[i].frame >= enemies[i].numFrames)
+				{
+					enemies[i].frame = 0;
+				}
+			}
+		}
+		if(enemies[i].type == 4)
+		{
+			//change starting x and y for each type
+			//64 + (enemies[i].frame * 32)
+			ctx.drawImage(sprites, 0 + (enemies[i].frame * 32), 196, 32, 28,
+					enemies[i].x, enemies[i].y, 50, 50);
+			enemies[i].counter++;
+			if(enemies[i].counter % 5 == 0)
+			{
+				enemies[i].frame++;
+				if(enemies[i].frame >= enemies[i].numFrames)
+				{
+					enemies[i].frame = 0;
+				}
+			}
+		}
+		enemies[i].y += enemies[i].speed;
+		//handle collisions
+		if(playerX < enemies[i].x + 50 &&
+		   playerX + 50 > enemies[i].x &&
+		   playerY < enemies[i].y + 50 &&
+		   playerY + 50 > enemies[i].y)
+		   {
+				//collision has happened
+				livesCounter -= 1;
+				enemies.splice(i,1);
+		   }
+		for(let j = 0; j < bullets.length; j++)
+		{
+			if(bullets[j].x < enemies[i].x + 50 &&
+			   bullets[j].x + 2 > enemies[i].x &&
+			   bullets[j].y < enemies[i].y + 50 &&
+			   bullets[j].y + 2 > enemies[i].y)
+			{
+				//collision has happened
+				playSound("explosion.wav", .5);
+				enemies.splice(i,1);
+				bullets.splice(j,1);
+				score += 50;
+			}
+		}
+	}
+}
+
+function Star(x,y)
+{
+	this.x = x;
+	this.y = y;
+}
+
+for(let i = 0; i < 100; i++)
+{
+	let randX = Math.floor(Math.random() * 800);
+	let randY = Math.floor(Math.random() * 600);
+	stars.push(new Star(randX, randY));
+}
+
+function drawStars()
+{
+	for(let i = 0; i < stars.length; i++)
+	{
+		ctx.fillStyle = "rgb(235,207,52)";
+		ctx.fillRect(stars[i].x, stars[i].y, 1, 1);
+		stars[i].y += 1;
+		if(stars[i].y > 600)
+		{
+			let randX = Math.floor(Math.random() * 800);
+			let randY = -1;
+			stars[i].x = randX;
+			stars[i].y = randY;
+		}
+	}
+}
+
+function Bullet(x,y,speed)
+{
+	this.x = x;
+	this.y = y;
+	this.speed = speed;
+}
+
+function keyDownHandler(e){
+	if(e.keyCode == 37)
+	{
+		leftPressed = true;
+	}
+	else if(e.keyCode == 39)
+	{
+		rightPressed = true;
+	}
+	if(e.keyCode == 32)
+	{
+		isFiring = true;
+	}
+}
+
+function keyUpHandler(e){
+	if(e.keyCode == 37)
+	{
+		leftPressed = false;
+	}
+	else if(e.keyCode == 39)
+	{
+		rightPressed = false;
+	}
+	if(e.keyCode == 32)
+	{
+		isFiring = false;
+	}
+}
+
+function controls()
+{
+	if(leftPressed && playerX >= 4)
+	{
+		playerX -= 5;
+	}
+	if(rightPressed && playerX + 50 <= 796)
+	{
+		playerX += 5;
+	}
+	if(isFiring && canFire && pu3on == false)
+	{
+		bullets.push(new Bullet(playerX + 3, playerY, 3));
+		bullets.push(new Bullet(playerX + 45, playerY, 3));
+		playSound("laser.wav",.3);
+		canFire = false;
+		bulletCounter = 0;
+	}
+	if(isFiring && canFire && pu3on == true)
+	{
+		bullets.push(new Bullet(playerX + 3, playerY, 3));
+		bullets.push(new Bullet(playerX + 45, playerY, 3));
+		bullets.push(new Bullet(playerX - 43, playerY, 3));
+		bullets.push(new Bullet(playerX + 90, playerY, 3));
+		playSound("laser.wav",.3);
+		canFire = false;
+		bulletCounter = 0;
+	}
+	bulletCounter++;
+	if(bulletCounter >= fireRate)
+	{
+		canFire = true;
+	}
+}
+
+function drawBullets()
+{
+	for(let i = 0; i < bullets.length; i++)
+	{
+		ctx.fillStyle = "rgb(255,0,0)";
+		ctx.fillRect(bullets[i].x, bullets[i].y, bulletSize, bulletSize);
+		bullets[i].y -= bulletSpeed;
+	}
+}
+
+function drawPlayer()
+{
+	ctx.fillStyle = "rgb(255,0,0)";
+	ctx.font = "25px Arial";
+	ctx.fillText("lives: " + livesCounter, 10, 25);
+	ctx.font = "15px Arial";
+	ctx.fillText("Score: " + score, 700, 15);
+	if(animationFrame == 1)
+	{
+		ctx.drawImage(sprites, 0, 160, 32, 32, playerX, playerY, 50, 50);
+	}
+	else if(animationFrame == 2)
+	{
+		ctx.drawImage(sprites, 32, 160, 32, 32, playerX, playerY, 50, 50);
+	}
+	else if(animationFrame == 3)
+	{
+		ctx.drawImage(sprites, 64, 160, 32, 32, playerX, playerY, 50, 50);
+	}
+	else if(animationFrame == 4)
+	{
+		ctx.drawImage(sprites, 96, 160, 32, 32, playerX, playerY, 50, 50);
+	}
+	
+	animationCounter++;
+	if(animationCounter % animationSpeed == 0)
+	{
+		animationFrame++;
+		if(animationFrame > 4)
+		{
+			animationFrame = 1;
+		}
+	}
+}
+
+function drawStartScreen()
+{
+	if(notInHelp)
+	{
+		ctx.font = "100px Arial";
+		ctx.fillStyle = "rgb(255,0,0)";
+		ctx.fillText("Space Fighter", 100, 100);
+		ctx.drawImage(sprites, 32, 160, 32, 32, 375, 250, 50, 50);
+		
+		//main menu
+		if(mouseX >= 300 && mouseX <= 500 &&
+			mouseY >= 400 && mouseY <= 500)
+		{
+			ctx.fillStyle = "rgb(0,255,0)";
+			ctx.fillRect(300,400,200,100);
+			ctx.font = "35px Arial";
+			ctx.fillStyle = "rgb(255,0,0)";
+			ctx.fillText("Start Game", 310, 460);
+			if(mouseIsDown)
+			{
+				hasStarted = true;
+			}
+		}
+		else
+		{
+			ctx.fillStyle = "rgb(255,0,0)";
+			ctx.fillRect(300,400,200,100);
+			ctx.font = "35px Arial";
+			ctx.fillStyle = "rgb(0,255,0)";
+			ctx.fillText("Start Game", 310, 460);
+		}
+		
+		//help screen button
+		if(mouseX >= 50 && mouseX <= 100 &&
+			mouseY >= 540 && mouseY <= 600)
+		{
+			ctx.fillStyle = "rgb(0,0,255)";
+			ctx.fillRect(50,540,50,50);
+			ctx.font = "15px Arial";
+			ctx.fillStyle = "rgb(255,0,0)";
+			ctx.fillText("Help", 60, 568);
+			if(mouseIsDown)
+			{
+				notInHelp = false;
+			}
+		}
+		else
+		{
+			ctx.fillStyle = "rgb(255,0,0)";
+			ctx.fillRect(50,540,50,50);
+			ctx.font = "15px Arial";
+			ctx.fillStyle = "rgb(0,0,255)";
+			ctx.fillText("Help", 60, 568);
+		}
+	}
+	if(!notInHelp)
+	{
+		ctx.font = "75px Arial";
+		ctx.fillStyle = "rgb(255,0,0)";
+		ctx.fillText("Help", 300, 75);
+		
+		ctx.font = "20px Arial";
+		ctx.fillText("- Press space to shoot and arrow keys to move", 100, 175);
+		ctx.fillText("- Power up 1 grants increased firing speed, power up 2 gives", 100, 235);
+		ctx.fillText("  faster and larger bullets,and power up 3 shoots 4 bullets instead of 2", 100, 260);
+		ctx.fillText("- Hit any enemy to destroy it and gain 50 points", 100, 320);
+		ctx.fillText("- If you get hit by any enemies 3 times, you lose", 100, 380);
+		
+		ctx.fillStyle = "rgba(255,0,0,.3)";
+		ctx.fillRect(50,200,25,25);
+		ctx.fillRect(50,230,25,25);
+		ctx.fillRect(50,260,25,25);
+		ctx.fillStyle = "rgb(0,255,0)";
+		ctx.font = "20px Arial";
+		ctx.fillText("1", 50 + 5, 200 + 20);
+		ctx.fillText("2", 50 + 5, 230 + 20);
+		ctx.fillText("3", 50 + 5, 260 + 20);		
+		
+		if(mouseX >= 125 && mouseX <= 175 &&
+			mouseY >= 540 && mouseY <= 600)
+		{
+			ctx.fillStyle = "rgb(0,0,255)";
+			ctx.fillRect(125,540,50,50);
+			ctx.font = "15px Arial";
+			ctx.fillStyle = "rgb(255,0,0)";
+			ctx.fillText("Back", 135, 568);
+			if(mouseIsDown)
+			{
+				notInHelp = true;
+			}
+		}
+		else
+		{
+			ctx.fillStyle = "rgb(255,0,0)";
+			ctx.fillRect(125,540,50,50);
+			ctx.font = "15px Arial";
+			ctx.fillStyle = "rgb(0,0,255)";
+			ctx.fillText("Back", 135, 568);
+		}
+	}
+	
+}
+
+function drawGameOver()
+{
+	if(livesCounter == 0)
+	{
+		ctx.font = "100px Arial";
+		ctx.fillStyle = "rgb(255,0,0)";
+		ctx.fillText("Game Over", 125, 100);
+		ctx.font = "30px Arial";
+		ctx.fillText("Score: " + score, 325, 200);
+			
+		if(mouseX >= 300 && mouseX <= 500 &&
+				mouseY >= 400 && mouseY <= 500)
+		{
+			ctx.fillStyle = "rgb(0,0,255)";
+			ctx.fillRect(300,400,200,100);
+			ctx.font = "35px Arial";
+			ctx.fillStyle = "rgb(0,0,0)";
+			ctx.fillText("Play Again?", 310, 460);
+			if(mouseIsDown)
+			{
+				livesCounter = 3;
+				playerX = 400;
+				score = 0;
+			}
+		}
+		else
+		{
+			ctx.fillStyle = "rgb(255,0,0)";
+			ctx.fillRect(300,400,200,100);
+			ctx.font = "35px Arial";
+			ctx.fillStyle = "rgb(0,0,0)";
+			ctx.fillText("Play Again?", 310, 460);
+		}
+	}
+}
+
+function draw() {
+	setTimeout(function() 
+	{
+		requestAnimationFrame(draw);
+		ctx.fillStyle = "rgb(10,10,10)";
+		ctx.fillRect(0,0,800,600);
+		//all code goes here
+		if(!hasStarted && livesCounter == 3)
+		{
+			drawStartScreen();
+		}
+		else if(livesCounter == 0)
+		{
+			drawGameOver();
+		}
+		else
+		{
+			drawStars();
+			controls();
+			drawPlayer();
+			drawBullets();
+			drawEnemies();
+			handlePowerUps();
+			globalCounter++;
+		}
+	}, 1000/fps);
+}
+draw();
+
+</script>
+</body>
+</html>

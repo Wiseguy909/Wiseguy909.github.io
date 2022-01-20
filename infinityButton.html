@@ -1,0 +1,92 @@
+<html> 
+<head>
+	<style>
+	*{padding: 0; margin:0;}
+	canvas{ background: #eee; display: block; margin: 0 auto;}
+	</style>
+</head>
+<body>
+<canvas id= "myCanvas" width="800" height="600"></canvas>
+<script type="text/javascript">
+let canvas = document.getElementById("myCanvas");
+let ctx = canvas.getContext("2d");
+canvas.addEventListener("mousemove", getPosition, false);
+canvas.addEventListener("mouseup", getMouseUp, false);
+canvas.addEventListener("mousedown", getMouseDown, false);
+ctx.canvas.width  = window.innerWidth;
+ctx.canvas.height = window.innerHeight;
+let fps = 100;
+const wW = window.innerWidth;
+const wH = window.innerHeight;
+let buttons = [];
+
+function getPosition(event)
+{
+	mouseX = event.x - canvas.offsetLeft;
+	mouseY = event.y - canvas.offsetTop;
+}
+
+function getMouseDown(e)
+{
+	mouseIsDown = true;
+}
+
+function getMouseUp(e)
+{
+	mouseIsDown = false;
+}
+
+function button(x,y)
+{
+	this.x = x;
+	this.y = y;
+	this.pressed = false;
+}
+
+buttons.push(new button(wW/2-50,wH/2-50));
+
+function drawButtons()
+{
+	for(let i = 0; i < buttons.length; i++)
+	{
+		ctx.fillStyle = "rgb(220,220,220)";
+		ctx.fillRect(buttons[i].x,buttons[i].y,100,100);
+		if(!buttons[i].pressed)
+		{
+			ctx.fillStyle = "rgb(225,0,0)";
+			ctx.beginPath();
+			ctx.arc(buttons[i].x + 50,buttons[i].y + 50,40,0,2*Math.PI)
+			ctx.fill();
+			ctx.closePath();
+		}
+		else
+		{
+			ctx.fillStyle = "rgb(0,225,0)";
+			ctx.beginPath();
+			ctx.arc(buttons[i].x + 50,buttons[i].y + 50,40,0,2*Math.PI)
+			ctx.fill();
+			ctx.closePath();
+		}
+		if(mouseX >= buttons[i].x && mouseX <= buttons[i].x + 100 && mouseY >= buttons[i].y && mouseY <= buttons[i].y + 100 && mouseIsDown && !buttons[i].pressed)
+		{
+			buttons[i].pressed = true;
+			buttons.push(new button(Math.floor(Math.random()*wW-50),Math.floor(Math.random()*wH-50)));
+		}
+	}
+}
+
+function draw()
+{
+	setTimeout(function()
+	{
+		requestAnimationFrame(draw);
+		ctx.clearRect(0,0,wW,wH);
+		drawButtons();
+	}, 1000/fps);
+}
+
+draw();
+
+</script>
+</body>
+</html>

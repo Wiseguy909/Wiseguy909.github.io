@@ -1,0 +1,8 @@
+Errors:
+Map 50 has incorrect tiles
+Portal on the left of map 2 leads back to map 2, so map 1 is inaccessible
+River on map 23 has no border
+Maps 8 and 6 are identical except for portals
+Ladder on map 4 is blocked by a rock
+Portal entering from the right on map 20 is one tile too far to the left
+River on map 85 has no border

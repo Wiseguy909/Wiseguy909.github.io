@@ -1,0 +1,478 @@
+<html>
+<head>
+	<style>
+	*{padding: 0; margin:0;}
+	canvas{ background: #202020; display: block; margin: 0 auto;}
+	</style>
+</head>
+<body>
+<canvas id= "myCanvas" width="800" height="600"></canvas>
+<script type="text/javascript">
+let canvas = document.getElementById("myCanvas");
+let ctx = canvas.getContext("2d");
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false);
+document.addEventListener("mousedown", getMouseDown, false);
+document.addEventListener("mouseup", getMouseUp, false);
+document.addEventListener("mousemove", mouseMoveHandler, false);
+let level = 1;
+let fps = 100;
+let x = 385;
+let y = 320;
+let radius = 20;
+let dX = 2;
+let dY = 2;
+let paddleX = 400;
+let paddleY = 580;
+let paddleW = 100;
+let paddleH = 15;
+let paddleSpeed = 5;
+let leftPressed = false;
+let rightPressed = false;
+let blocks = [];
+let animations = [];
+let score = 0;
+let gameIsOver = false;
+let pX = 0;
+let pY = 0;
+let mouseIsDown = false;
+
+
+
+function handleLevel()
+{
+	if(score > 0 && score%70 == 0)
+	{
+		score++;
+		level++;
+		for(let r = 0; r < 5; r++)
+		{
+			for(let c = 0; c < 14; c++)
+			{
+				blocks[r][c].hit = false;
+			}
+		}
+		if(dX < 0)
+		{
+			dX-= .5;
+		}if(dX > 0)
+		{
+			dX+= .5;
+		}if(dY < 0)
+		{
+			dY-= .5;
+		}if(dY > 0)
+		{
+			dY+= .5;
+		}
+		paddleSpeed++;
+	}
+}
+
+function mouseMoveHandler(e){
+	pX = e.clientX - canvas.offsetLeft;
+	pY = e.clientY - canvas.offsetTop;
+}
+
+function getMouseUp(e){
+	mouseIsDown = false;
+}
+
+function getMouseDown(e){
+	mouseIsDown = true;
+}
+
+function Block(x1, y1, color)
+{
+	this.x = x1;
+	this.y = y1;
+	this.color = color;
+	this.hit = false;
+}
+
+function Animation(x,y,color,direction)
+{
+	this.x = x;
+	this.y = y;
+	this.color = color;
+	this.direction = direction;
+	this.frames = 10;
+	this.currentFrame = 1;
+	this.counter = 0;
+}
+
+for(let r = 0; r < 5; r++)
+{
+	blocks[r] = [];
+	for(let c = 0; c < 14; c++)
+	{
+		let x1 = (c * 50) + 50;
+		let y1 = (r * 50) + 50;
+		let r1 = Math.floor(Math.random()*256);
+		let g1 = Math.floor(Math.random()*256);
+		let b1 = Math.floor(Math.random()*256);
+		let color = "rgb(" +r1+","+g1+","+b1+")";
+		blocks[r][c] = new Block(x1, y1, color);
+	}
+}
+
+function drawBlocks()
+{
+	for(let r = 0; r < 5; r++)
+	{
+		for(let c = 0; c < 14; c++)
+		{
+			if(blocks[r][c].hit == false)
+			{
+				ctx.fillStyle = blocks[r][c].color;
+				ctx.fillRect(blocks[r][c].x, blocks[r][c].y, 
+								48, 48);
+			}
+		}
+	}
+}
+
+
+function keyDownHandler(e){
+	if(e.keyCode == 37)
+	{
+		leftPressed = true;
+	}
+	else if(e.keyCode == 39)
+	{
+		rightPressed = true;
+	}
+}
+
+function keyUpHandler(e){
+	if(e.keyCode == 37)
+	{
+		leftPressed = false;
+	}
+	else if(e.keyCode == 39)
+	{
+		rightPressed = false;
+	}
+}
+
+function controls()
+{
+	if(rightPressed)
+	{
+		paddleX += paddleSpeed;
+	}
+	if(leftPressed)
+	{
+		paddleX -= paddleSpeed;
+	}
+}
+
+function drawPaddle()
+{
+	ctx.fillStyle = "rgb(0,75,200)"
+	ctx.fillRect(paddleX, paddleY, paddleW, paddleH);
+}
+
+function drawBall()
+{
+	ctx.fillStyle = "rgb(255,255,255)";
+	ctx.beginPath();
+	ctx.arc(x,y,radius,0, 2 * Math.PI);
+	ctx.closePath();
+	ctx.fill();
+}
+
+function collision()
+{
+	x += dX;
+	y += dY;
+	if(x + radius > 800 || x - radius < 0)
+	{
+		dX *= -1;
+	}
+	if(y - radius < 0)
+	{
+		dY *= -1;
+	}
+	if(y + radius > 600)
+	{
+		gameIsOver = true;
+	}
+	
+	if(x + radius >= paddleX && 
+		x - radius <= paddleX + paddleW &&
+		y + radius >= paddleY)
+		{
+			dY *= -1;
+			let randomNum = Math.floor(Math.random()*100)+1
+		}
+	for(let r = 0; r < 5; r++)
+	{
+		for(let c = 0; c < 14; c++)
+		{		
+			if(blocks[r][c].hit == false)
+			{
+				let cx = x;
+				let cy = y;
+				let rx = blocks[r][c].x;
+				let ry = blocks[r][c].y;
+				let rw = 48;
+				let rh = 48;
+				  // temporary variables to set edges for testing
+				  let testX = cx;
+				  let testY = cy;
+					  // which edge is closest?
+				  if (cx < rx)         testX = rx;      // test left edge
+				  else if (cx > rx+rw) testX = rx+rw;   // right edge
+				  if (cy < ry)         testY = ry;      // top edge
+				  else if (cy > ry+rh) testY = ry+rh;   // bottom edge
+					  // get distance from closest edges
+				  let distX = cx-testX;
+				  let distY = cy-testY;
+				  let distance = Math.sqrt( (distX*distX) + (distY*distY) );
+					  // if the distance is less than the radius, collision!
+				  if (distance <= radius) {
+					blocks[r][c].hit = true;
+					score++;
+					if(distX <= 0)
+					{
+						dY *= -1;
+					}
+					if(distY <= 0)
+					{
+						dX *= -1;
+					}
+					else
+					{
+						
+					}
+					let direction = "";
+					//Animation(x,y,color,direction)
+					if(cy >= ry)
+					{
+						direction = "up";
+					}
+					else if(cy <= ry)
+					{
+						direction = "down";
+					}
+					else if(cx >= rx)
+					{
+						direction = "right";
+					}
+					else if(cx <= rx)
+					{
+						direction = "left";
+					}
+					animations.push(new Animation(rx,ry,blocks[r][c].color,direction))
+				}
+			}
+		}
+	}
+}
+
+function drawAnimations()
+{
+	for(let i = 0; i < animations.length; i++)
+	{
+		if(animations[i].direction == "up")
+		{
+			ctx.fillStyle = animations[i].color;
+			let rads = (210 * Math.PI)/180
+			let x1 = animations[i].x + (Math.cos(rads) * animations[i].currentFrame * 2);
+			let y1 = animations[i].y + (Math.sin(rads) * animations[i].currentFrame * 2);
+			ctx.fillRect(x1,y1, 45/4, 45);
+			rads = (240 * Math.PI)/180
+			x1 = animations[i].x + (Math.cos(rads) * animations[i].currentFrame * 2);
+			y1 = animations[i].y + (Math.sin(rads) * animations[i].currentFrame * 2);
+			ctx.fillRect(x1,y1, 45/4, 45);
+			rads = (300 * Math.PI)/180
+			x1 = animations[i].x + (Math.cos(rads) * animations[i].currentFrame * 2);
+			y1 = animations[i].y + (Math.sin(rads) * animations[i].currentFrame * 2);
+			ctx.fillRect(x1,y1, 45/4, 45);
+			rads = (330 * Math.PI)/180
+			x1 = animations[i].x + (Math.cos(rads) * animations[i].currentFrame * 2);
+			y1 = animations[i].y + (Math.sin(rads) * animations[i].currentFrame * 2);
+			ctx.fillRect(x1,y1, 45/4, 45);
+			animations[i].counter += 1;
+			if(animations[i].counter%3 == 0)
+			{
+				animations[i].currentFrame += 1;
+			}
+			if(animations[i].currentFrame > animations[i].frames)
+			{
+				animations.splice(i,1);
+				break;
+			}
+		}
+		if(animations[i].direction == "down")
+		{
+			ctx.fillStyle = animations[i].color;
+			let rads = (30 * Math.PI)/180
+			let x1 = animations[i].x + (Math.cos(rads) * animations[i].currentFrame * 2);
+			let y1 = animations[i].y + (Math.sin(rads) * animations[i].currentFrame * 2);
+			ctx.fillRect(x1,y1, 45/4, 45);
+			rads = (60 * Math.PI)/180
+			x1 = animations[i].x + (Math.cos(rads) * animations[i].currentFrame * 2);
+			y1 = animations[i].y + (Math.sin(rads) * animations[i].currentFrame * 2);
+			ctx.fillRect(x1,y1, 45/4, 45);
+			rads = (120 * Math.PI)/180
+			x1 = animations[i].x + (Math.cos(rads) * animations[i].currentFrame * 2);
+			y1 = animations[i].y + (Math.sin(rads) * animations[i].currentFrame * 2);
+			ctx.fillRect(x1,y1, 45/4, 45);
+			rads = (150 * Math.PI)/180
+			x1 = animations[i].x + (Math.cos(rads) * animations[i].currentFrame * 2);
+			y1 = animations[i].y + (Math.sin(rads) * animations[i].currentFrame * 2);
+			ctx.fillRect(x1,y1, 45/4, 45);
+			animations[i].counter += 1;
+			if(animations[i].counter%3 == 0)
+			{
+				animations[i].currentFrame += 1;
+			}
+			if(animations[i].currentFrame > animations[i].frames)
+			{
+				animations.splice(i,1);
+				break;
+			}
+		}
+			if(animations[i].direction == "left")
+		{
+			ctx.fillStyle = animations[i].color;
+			let rads = (120 * Math.PI)/180
+			let x1 = animations[i].x + (Math.cos(rads) * animations[i].currentFrame * 2);
+			let y1 = animations[i].y + (Math.sin(rads) * animations[i].currentFrame * 2);
+			ctx.fillRect(x1,y1, 45/4, 45);
+			rads = (150 * Math.PI)/180
+			x1 = animations[i].x + (Math.cos(rads) * animations[i].currentFrame * 2);
+			y1 = animations[i].y + (Math.sin(rads) * animations[i].currentFrame * 2);
+			ctx.fillRect(x1,y1, 45/4, 45);
+			rads = (210 * Math.PI)/180
+			x1 = animations[i].x + (Math.cos(rads) * animations[i].currentFrame * 2);
+			y1 = animations[i].y + (Math.sin(rads) * animations[i].currentFrame * 2);
+			ctx.fillRect(x1,y1, 45/4, 45);
+			rads = (240 * Math.PI)/180
+			x1 = animations[i].x + (Math.cos(rads) * animations[i].currentFrame * 2);
+			y1 = animations[i].y + (Math.sin(rads) * animations[i].currentFrame * 2);
+			ctx.fillRect(x1,y1, 45/4, 45);
+			animations[i].counter += 1;
+			if(animations[i].counter%3 == 0)
+			{
+				animations[i].currentFrame += 1;
+			}
+			if(animations[i].currentFrame > animations[i].frames)
+			{
+				animations.splice(i,1);
+				break;
+			}
+		}
+		if(animations[i].direction == "right")
+		{
+			ctx.fillStyle = animations[i].color;
+			let rads = (30 * Math.PI)/180
+			let x1 = animations[i].x + (Math.cos(rads) * animations[i].currentFrame * 2);
+			let y1 = animations[i].y + (Math.sin(rads) * animations[i].currentFrame * 2);
+			ctx.fillRect(x1,y1, 45/4, 45);
+			rads = (60 * Math.PI)/180
+			x1 = animations[i].x + (Math.cos(rads) * animations[i].currentFrame * 2);
+			y1 = animations[i].y + (Math.sin(rads) * animations[i].currentFrame * 2);
+			ctx.fillRect(x1,y1, 45/4, 45);
+			rads = (330 * Math.PI)/180
+			x1 = animations[i].x + (Math.cos(rads) * animations[i].currentFrame * 2);
+			y1 = animations[i].y + (Math.sin(rads) * animations[i].currentFrame * 2);
+			ctx.fillRect(x1,y1, 45/4, 45);
+			rads = (300 * Math.PI)/180
+			x1 = animations[i].x + (Math.cos(rads) * animations[i].currentFrame * 2);
+			y1 = animations[i].y + (Math.sin(rads) * animations[i].currentFrame * 2);
+			ctx.fillRect(x1,y1, 45/4, 45);
+			animations[i].counter += 1;
+			if(animations[i].counter%3 == 0)
+			{
+				animations[i].currentFrame += 1;
+			}
+			if(animations[i].currentFrame > animations[i].frames)
+			{
+				animations.splice(i,1);
+				break;
+			}
+		}
+	}
+}
+
+function drawGameOverScreen()
+{
+	ctx.fillStyle = "rgb(255,0,0)";
+	ctx.font = "100px Ariel";
+	ctx.fillText("You are a loser!", 100, 300);
+	
+	ctx.fillStyle = "rgb(0,0,0)";
+	ctx.fillRect(250, 400, 300, 150);
+	if(pX >= 250 && pX <= 550 && pY >= 400 && pY <= 550)
+	{
+		ctx.fillStyle = "rgb(0,0,150)";
+		ctx.fillRect(255, 405, 290, 140);
+		ctx.fillStyle = "rgb(150,150,150)";
+		ctx.font = "50px Ariel";
+		ctx.fillText("Play again?", 285, 485);
+		if(mouseIsDown)
+		{
+			score = 0;
+			for(let r = 0; r < 5; r++)
+			{
+				for(let c = 0; c < 14; c++)
+				{
+					blocks[r][c].hit = false;
+				}
+			}
+			gameIsOver = false;
+			x = 400;
+			y = 320;
+			dX = 2
+			dY = 2
+			paddleSpeed = 5;
+			score = 0;
+			
+		}
+	}
+	else
+	{
+		ctx.fillStyle = "rgb(150,0,0)";
+		ctx.fillRect(255, 405, 290, 140);
+		ctx.fillStyle = "rgb(0,0,0)";
+		ctx.font = "50px Ariel";
+		ctx.fillText("Play again?", 285, 485);
+	}
+}
+
+
+
+
+function draw() {
+	setTimeout(function() {
+	requestAnimationFrame(draw);
+	ctx.clearRect(0,0,800,600);
+	ctx.font = "20px Ariel";
+	///all code goes here
+	//console.log(pX + "    " + pY);
+	if(gameIsOver == false)
+	{
+		ctx.fillStyle = "rgb(255,255,255)";
+		ctx.fillText("Score: " + score, 700, 40);
+		drawBall();
+		collision();
+		drawPaddle();
+		controls();
+		drawBlocks();
+		handleLevel();
+		drawAnimations();
+	}
+	if(gameIsOver == true)
+	{
+		drawGameOverScreen()
+	}
+	}, 1000/fps);
+}
+draw();
+
+</script>
+</body>
+</html>

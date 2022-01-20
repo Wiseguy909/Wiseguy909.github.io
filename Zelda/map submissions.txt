@@ -1,0 +1,1356 @@
+let map32 = [
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67],
+[ 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67],
+[ 67, 67, 68, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14],
+[ 67, 67, 14, 31, 14, 14, 31, 14, 14, 31, 14, 14, 31, 14, 14, 14],
+[ 67, 67, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14],
+[ 67, 67, 14, 31, 14, 14, 31, 14, 14, 31, 14, 14, 31, 14, 14, 14],
+[ 67, 67, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14],
+[ 67, 67, 14, 31, 14, 14, 31, 14, 14, 31, 14, 14, 31, 14, 14, 14],
+[ 67, 67, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14],
+[ 67, 67, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 49, 49],
+[ 67, 67, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 67, 67]];
+let gameObjects32 = [];
+
+gO = new GameObject()
+gO.x = 32;
+gO.y = 224;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 48;
+gO.newLinkX = 32;
+gO.newLinkY = 65;
+gO.isPortal = true;
+gameObjects32.push(gO);
+
+gO = new GameObject()
+gO.x = 48;
+gO.y = 224;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 48;
+gO.newLinkX = 48;
+gO.newLinkY = 65;
+gO.isPortal = true;
+gameObjects32.push(gO);
+
+gO = new GameObject()
+gO.x = 64;
+gO.y = 224;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 48;
+gO.newLinkX = 64;
+gO.newLinkY = 65;
+gO.isPortal = true;
+gameObjects32.push(gO);
+
+gO = new GameObject()
+gO.x = 80;
+gO.y = 224;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 48;
+gO.newLinkX = 80;
+gO.newLinkY = 65;
+gO.isPortal = true;
+gameObjects32.push(gO);
+
+gO = new GameObject()
+gO.x = 96;
+gO.y = 224;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 48;
+gO.newLinkX = 96;
+gO.newLinkY = 65;
+gO.isPortal = true;
+gameObjects32.push(gO);
+
+gO = new GameObject()
+gO.x = 112;
+gO.y = 224;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 48;
+gO.newLinkX = 112;
+gO.newLinkY = 65;
+gO.isPortal = true;
+gameObjects32.push(gO);
+
+gO = new GameObject()
+gO.x = 128;
+gO.y = 224;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 48;
+gO.newLinkX = 128;
+gO.newLinkY = 65;
+gO.isPortal = true;
+gameObjects32.push(gO);
+
+gO = new GameObject()
+gO.x = 144;
+gO.y = 224;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 48;
+gO.newLinkX = 144;
+gO.newLinkY = 65;
+gO.isPortal = true;
+gameObjects32.push(gO);
+
+gO = new GameObject()
+gO.x = 160;
+gO.y = 224;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 48;
+gO.newLinkX = 160;
+gO.newLinkY = 65;
+gO.isPortal = true;
+gameObjects32.push(gO);
+
+gO = new GameObject()
+gO.x = 176;
+gO.y = 224;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 48;
+gO.newLinkX = 176;
+gO.newLinkY = 65;
+gO.isPortal = true;
+gameObjects32.push(gO);
+
+gO = new GameObject()
+gO.x = 192;
+gO.y = 224;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 48;
+gO.newLinkX = 192;
+gO.newLinkY = 65;
+gO.isPortal = true;
+gameObjects32.push(gO);
+
+gO = new GameObject()
+gO.x = 208;
+gO.y = 224;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 48;
+gO.newLinkX = 208;
+gO.newLinkY = 65;
+gO.isPortal = true;
+gameObjects32.push(gO);
+
+gO = new GameObject()
+gO.x = 256;
+gO.y = 80;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 33;
+gO.newLinkX = 1;
+gO.newLinkY = 80;
+gO.isPortal = true;
+gameObjects32.push(gO);
+
+gO = new GameObject()
+gO.x = 256;
+gO.y = 96;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 33;
+gO.newLinkX = 1;
+gO.newLinkY = 96;
+gO.isPortal = true;
+gameObjects32.push(gO);
+
+gO = new GameObject()
+gO.x = 256;
+gO.y = 112;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 33;
+gO.newLinkX = 1;
+gO.newLinkY = 112;
+gO.isPortal = true;
+gameObjects32.push(gO);
+
+gO = new GameObject()
+gO.x = 256;
+gO.y = 128;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 33;
+gO.newLinkX = 1;
+gO.newLinkY = 128;
+gO.isPortal = true;
+gameObjects32.push(gO);
+
+gO = new GameObject()
+gO.x = 256;
+gO.y = 144;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 33;
+gO.newLinkX = 1;
+gO.newLinkY = 144;
+gO.isPortal = true;
+gameObjects32.push(gO);
+
+gO = new GameObject()
+gO.x = 256;
+gO.y = 160;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 33;
+gO.newLinkX = 1;
+gO.newLinkY = 160;
+gO.isPortal = true;
+gameObjects32.push(gO);
+
+gO = new GameObject()
+gO.x = 256;
+gO.y = 176;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 33;
+gO.newLinkX = 1;
+gO.newLinkY = 176;
+gO.isPortal = true;
+gameObjects32.push(gO);
+
+let map33 = [
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67],
+[ 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67],
+[ 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 67, 67],
+[ 14, 14, 14, 31, 14, 14, 31, 14, 14, 31, 14, 14, 31, 14, 67, 67],
+[ 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 67, 67],
+[ 14, 14, 14, 31, 14, 14, 31, 14, 14, 31, 14, 14, 31, 14, 67, 67],
+[ 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 67, 67],
+[ 14, 14, 14, 31, 14, 14, 31, 14, 14, 31, 14, 14, 31, 14, 67, 67],
+[ 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 67, 67],
+[ 49, 49, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 67, 67],
+[ 67, 67, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 67, 67]];
+let gameObjects33 = [];
+
+gO = new GameObject()
+gO.x = 32;
+gO.y = 224;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 49;
+gO.newLinkX = 32;
+gO.newLinkY = 65;
+gO.isPortal = true;
+gameObjects33.push(gO);
+
+gO = new GameObject()
+gO.x = 48;
+gO.y = 224;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 49;
+gO.newLinkX = 48;
+gO.newLinkY = 65;
+gO.isPortal = true;
+gameObjects33.push(gO);
+
+gO = new GameObject()
+gO.x = 64;
+gO.y = 224;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 49;
+gO.newLinkX = 64;
+gO.newLinkY = 65;
+gO.isPortal = true;
+gameObjects33.push(gO);
+
+gO = new GameObject()
+gO.x = 80;
+gO.y = 224;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 49;
+gO.newLinkX = 80;
+gO.newLinkY = 65;
+gO.isPortal = true;
+gameObjects33.push(gO);
+
+gO = new GameObject()
+gO.x = 96;
+gO.y = 224;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 49;
+gO.newLinkX = 96;
+gO.newLinkY = 65;
+gO.isPortal = true;
+gameObjects33.push(gO);
+
+gO = new GameObject()
+gO.x = 112;
+gO.y = 224;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 49;
+gO.newLinkX = 112;
+gO.newLinkY = 65;
+gO.isPortal = true;
+gameObjects33.push(gO);
+
+gO = new GameObject()
+gO.x = 128;
+gO.y = 224;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 49;
+gO.newLinkX = 128;
+gO.newLinkY = 65;
+gO.isPortal = true;
+gameObjects33.push(gO);
+
+gO = new GameObject()
+gO.x = 144;
+gO.y = 224;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 49;
+gO.newLinkX = 144;
+gO.newLinkY = 65;
+gO.isPortal = true;
+gameObjects33.push(gO);
+
+gO = new GameObject()
+gO.x = 160;
+gO.y = 224;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 49;
+gO.newLinkX = 160;
+gO.newLinkY = 65;
+gO.isPortal = true;
+gameObjects33.push(gO);
+
+gO = new GameObject()
+gO.x = 176;
+gO.y = 224;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 49;
+gO.newLinkX = 176;
+gO.newLinkY = 65;
+gO.isPortal = true;
+gameObjects33.push(gO);
+
+gO = new GameObject()
+gO.x = 192;
+gO.y = 224;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 49;
+gO.newLinkX = 192;
+gO.newLinkY = 65;
+gO.isPortal = true;
+gameObjects33.push(gO);
+
+gO = new GameObject()
+gO.x = 208;
+gO.y = 224;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 49;
+gO.newLinkX = 208;
+gO.newLinkY = 65;
+gO.isPortal = true;
+gameObjects33.push(gO);
+
+gO = new GameObject()
+gO.x = 0;
+gO.y = 80;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 32;
+gO.newLinkX = 239;
+gO.newLinkY = 80;
+gO.isPortal = true;
+gameObjects33.push(gO);
+
+gO = new GameObject()
+gO.x = 0;
+gO.y = 96;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 32;
+gO.newLinkX = 239;
+gO.newLinkY = 96;
+gO.isPortal = true;
+gameObjects33.push(gO);
+
+gO = new GameObject()
+gO.x = 0;
+gO.y = 112;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 32;
+gO.newLinkX = 239;
+gO.newLinkY = 112;
+gO.isPortal = true;
+gameObjects33.push(gO);
+
+gO = new GameObject()
+gO.x = 0;
+gO.y = 128;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 32;
+gO.newLinkX = 239;
+gO.newLinkY = 128;
+gO.isPortal = true;
+gameObjects33.push(gO);
+
+gO = new GameObject()
+gO.x = 0;
+gO.y = 144;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 32;
+gO.newLinkX = 239;
+gO.newLinkY = 144;
+gO.isPortal = true;
+gameObjects33.push(gO);
+
+gO = new GameObject()
+gO.x = 0;
+gO.y = 160;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 32;
+gO.newLinkX = 239;
+gO.newLinkY = 160;
+gO.isPortal = true;
+gameObjects33.push(gO);
+
+gO = new GameObject()
+gO.x = 0;
+gO.y = 176;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 32;
+gO.newLinkX = 239;
+gO.newLinkY = 176;
+gO.isPortal = true;
+gameObjects33.push(gO);
+
+let map34 = [
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55],
+[ 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55],
+[ 55, 55, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 55, 55],
+[ 55, 55, 14, 14, 14, 14, 51, 52, 52, 53, 14, 14, 14, 14, 55, 55],
+[ 55, 55, 14, 32, 32, 32, 69, 34, 34, 71, 32, 32, 32, 14, 55, 55],
+[ 55, 55, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 55, 55],
+[ 55, 55, 14, 32, 32, 32, 14, 14, 14, 14, 32, 32, 32, 14, 55, 55],
+[ 55, 55, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 55, 55],
+[ 55, 55, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 55, 55],
+[ 55, 55, 37, 37, 37, 37, 37, 18, 37, 37, 37, 37, 37, 37, 55, 55],
+[ 55, 55, 55, 55, 55, 55, 55, 18, 55, 55, 55, 55, 55, 55, 55, 55]];
+let gameObjects34 = [];
+
+gO = new GameObject()
+gO.x = 112;
+gO.y = 224;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 50;
+gO.newLinkX = 112;
+gO.newLinkY = 65;
+gO.isPortal = true;
+gameObjects34.push(gO);
+
+let map35 = [
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55],
+[ 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55],
+[ 55, 56,  2,  2,  2,  2,  2, 54, 55, 55, 56,  2,  2,  2,  2,  2],
+[ 55,  2,  2,  2,  2,  2,  2,  2, 55, 55,  2,  2,  2,  2,  2,  2],
+[ 55,  2,  2,  2,  1,  2,  2,  2, 55, 55,  2,  2,  2,  2,  2,  2],
+[ 55,  2,  2,  1,  2,  1,  2,  2, 55, 55,  2,  2,  2,  2,  2,  2],
+[ 55,  2,  2,  2,  1,  2,  2,  2, 55, 55,  2,  2,  2,  2,  2,  2],
+[ 55,  2,  2,  2,  2,  2,  2,  2, 55, 55,  2,  2,  2,  2,  2,  2],
+[ 55, 38,  2,  2,  2,  2,  2, 36, 55, 55, 38,  2,  2,  2,  2,  2],
+[ 55, 55, 37, 37, 37, 37, 18, 55, 55, 55, 55, 37, 37, 18, 37, 37],
+[ 55, 55, 55, 55, 55, 55, 18, 55, 55, 55, 55, 55, 55, 18, 55, 55]];
+let gameObjects35 = [];
+
+gO = new GameObject()
+gO.x = 96;
+gO.y = 224;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 51;
+gO.newLinkX = 96;
+gO.newLinkY = 65;
+gO.isPortal = true;
+gameObjects35.push(gO);
+
+gO = new GameObject()
+gO.x = 208;
+gO.y = 224;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 51;
+gO.newLinkX = 208;
+gO.newLinkY = 65;
+gO.isPortal = true;
+gameObjects35.push(gO);
+
+let map36 = [
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 18, 55, 55, 55, 55, 55],
+[ 55, 55, 55, 55, 55, 55, 56, 54, 55, 55, 18, 55, 56, 54, 55, 55],
+[  2,  2,  2, 54, 56,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2],
+[  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2],
+[  2,  2, 20,  2,  2, 20,  2,  2, 20,  2,  2, 20,  2,  2, 20,  2],
+[  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2],
+[  2,  2, 20,  2,  2, 20,  2,  2, 20,  2,  2, 20,  2,  2, 20,  2],
+[  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2],
+[  2,  2,  2, 36, 38,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2],
+[ 37, 37, 37, 55, 55, 37, 38, 36, 37, 37, 37, 37, 38, 36, 37, 37],
+[ 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55]];
+let gameObjects36 = [];
+
+gO = new GameObject()
+gO.x = 160;
+gO.y = 48;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 20;
+gO.newLinkX = 160;
+gO.newLinkY = 223;
+gO.isPortal = true;
+gameObjects36.push(gO);
+
+gO = new GameObject()
+gO.x = -16;
+gO.y = 80;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 35;
+gO.newLinkX = 239;
+gO.newLinkY = 80;
+gO.isPortal = true;
+gameObjects36.push(gO);
+
+gO = new GameObject()
+gO.x = -16;
+gO.y = 96;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 35;
+gO.newLinkX = 239;
+gO.newLinkY = 96;
+gO.isPortal = true;
+gameObjects36.push(gO);
+
+gO = new GameObject()
+gO.x = -16;
+gO.y = 112;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 35;
+gO.newLinkX = 239;
+gO.newLinkY = 112;
+gO.isPortal = true;
+gameObjects36.push(gO);
+
+gO = new GameObject()
+gO.x = -16;
+gO.y = 128;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 35;
+gO.newLinkX = 239;
+gO.newLinkY = 128;
+gO.isPortal = true;
+gameObjects36.push(gO);
+
+gO = new GameObject()
+gO.x = -16;
+gO.y = 144;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 35;
+gO.newLinkX = 239;
+gO.newLinkY = 144;
+gO.isPortal = true;
+gameObjects36.push(gO);
+
+gO = new GameObject()
+gO.x = -16;
+gO.y = 160;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 35;
+gO.newLinkX = 239;
+gO.newLinkY = 160;
+gO.isPortal = true;
+gameObjects36.push(gO);
+
+gO = new GameObject()
+gO.x = -16;
+gO.y = 176;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 35;
+gO.newLinkX = 239;
+gO.newLinkY = 176;
+gO.isPortal = true;
+gameObjects36.push(gO);
+
+gO = new GameObject()
+gO.x = 256;
+gO.y = 80;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 37;
+gO.newLinkX = 1;
+gO.newLinkY = 80;
+gO.isPortal = true;
+gameObjects36.push(gO);
+
+gO = new GameObject()
+gO.x = 256;
+gO.y = 96;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 37;
+gO.newLinkX = 1;
+gO.newLinkY = 96;
+gO.isPortal = true;
+gameObjects36.push(gO);
+
+gO = new GameObject()
+gO.x = 256;
+gO.y = 112;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 37;
+gO.newLinkX = 1;
+gO.newLinkY = 112;
+gO.isPortal = true;
+gameObjects36.push(gO);
+
+gO = new GameObject()
+gO.x = 256;
+gO.y = 128;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 37;
+gO.newLinkX = 1;
+gO.newLinkY = 128;
+gO.isPortal = true;
+gameObjects36.push(gO);
+
+gO = new GameObject()
+gO.x = 256;
+gO.y = 144;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 37;
+gO.newLinkX = 1;
+gO.newLinkY = 144;
+gO.isPortal = true;
+gameObjects36.push(gO);
+
+gO = new GameObject()
+gO.x = 256;
+gO.y = 160;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 37;
+gO.newLinkX = 1;
+gO.newLinkY = 160;
+gO.isPortal = true;
+gameObjects36.push(gO);
+
+gO = new GameObject()
+gO.x = 256;
+gO.y = 176;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 37;
+gO.newLinkX = 1;
+gO.newLinkY = 176;
+gO.isPortal = true;
+gameObjects36.push(gO);
+
+let map37 = [
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 55, 55, 55, 18, 55, 55, 55, 55, 55, 55, 55, 55, 55, 18, 55, 55],
+[ 55, 55, 55, 18, 55, 55, 56, 54, 55, 55, 34, 55, 55, 18, 55, 55],
+[  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2, 54, 55],
+[  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2, 55],
+[  2,  2, 20,  2,  2, 20,  2,  2, 20,  2,  2, 20,  2,  2,  2, 55],
+[  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2, 55],
+[  2,  2, 20,  2,  2, 20,  2,  2, 20,  2,  2, 20,  2,  2,  2, 55],
+[  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2, 55],
+[  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2, 36, 55],
+[ 37, 37, 37, 55, 18, 37, 38, 36, 37, 37, 37, 37, 37, 37, 55, 55],
+[ 55, 55, 55, 55, 18, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55]];
+let gameObjects37 = [];
+
+gO = new GameObject()
+gO.x = 48;
+gO.y = 48;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 21;
+gO.newLinkX = 48;
+gO.newLinkY = 223;
+gO.isPortal = true;
+gameObjects37.push(gO);
+
+gO = new GameObject()
+gO.x = 208;
+gO.y = 48;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 21;
+gO.newLinkX = 208;
+gO.newLinkY = 223;
+gO.isPortal = true;
+gameObjects37.push(gO);
+
+gO = new GameObject()
+gO.x = 64;
+gO.y = 224;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 53;
+gO.newLinkX = 64;
+gO.newLinkY = 65;
+gO.isPortal = true;
+gameObjects37.push(gO);
+
+gO = new GameObject()
+gO.x = -16;
+gO.y = 80;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 36;
+gO.newLinkX = 239;
+gO.newLinkY = 80;
+gO.isPortal = true;
+gameObjects37.push(gO);
+
+gO = new GameObject()
+gO.x = -16;
+gO.y = 96;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 36;
+gO.newLinkX = 239;
+gO.newLinkY = 96;
+gO.isPortal = true;
+gameObjects37.push(gO);
+
+gO = new GameObject()
+gO.x = -16;
+gO.y = 112;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 36;
+gO.newLinkX = 239;
+gO.newLinkY = 112;
+gO.isPortal = true;
+gameObjects37.push(gO);
+
+gO = new GameObject()
+gO.x = -16;
+gO.y = 128;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 36;
+gO.newLinkX = 239;
+gO.newLinkY = 128;
+gO.isPortal = true;
+gameObjects37.push(gO);
+
+gO = new GameObject()
+gO.x = -16;
+gO.y = 144;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 36;
+gO.newLinkX = 239;
+gO.newLinkY = 144;
+gO.isPortal = true;
+gameObjects37.push(gO);
+
+gO = new GameObject()
+gO.x = -16;
+gO.y = 160;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 36;
+gO.newLinkX = 239;
+gO.newLinkY = 160;
+gO.isPortal = true;
+gameObjects37.push(gO);
+
+gO = new GameObject()
+gO.x = -16;
+gO.y = 176;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 36;
+gO.newLinkX = 239;
+gO.newLinkY = 176;
+gO.isPortal = true;
+gameObjects37.push(gO);
+
+let map38 = [
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55],
+[ 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55],
+[ 55, 56,  2,  2,  2, 54, 55, 55, 56,  2, 55, 55, 55, 55, 55, 55],
+[ 55,  2,  2,  2,  2,  2, 54, 56,  2,  2, 54, 55, 56, 54, 55, 56],
+[ 55,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2],
+[ 55,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2],
+[ 55,  2,  2,  2,  2,  2,  2,  2,  2, 72, 73, 73, 73, 73, 73, 73],
+[ 55,  2,  2,  2,  2,  2, 36, 37,  2, 90, 91, 91, 91, 91, 91, 91],
+[ 55, 38,  2,  2,  2, 36, 55, 55, 37, 90, 91, 91, 91, 91, 91, 91],
+[ 55, 55,  2,  2, 37, 55, 55, 55, 55, 90, 91, 91, 91, 91, 91, 91],
+[ 55, 55,  2,  2, 55, 55, 55, 55, 55, 90, 91, 91, 91, 91, 91, 91]];
+let gameObjects38 = [];
+
+gO = new GameObject()
+gO.x = 32;
+gO.y = 224;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 54;
+gO.newLinkX = 32;
+gO.newLinkY = 65;
+gO.isPortal = true;
+gameObjects38.push(gO);
+
+gO = new GameObject()
+gO.x = 48;
+gO.y = 224;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 54;
+gO.newLinkX = 48;
+gO.newLinkY = 65;
+gO.isPortal = true;
+gameObjects38.push(gO);
+
+gO = new GameObject()
+gO.x = 256;
+gO.y = 112;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 39;
+gO.newLinkX = 1;
+gO.newLinkY = 112;
+gO.isPortal = true;
+gameObjects38.push(gO);
+
+gO = new GameObject()
+gO.x = 256;
+gO.y = 128;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 39;
+gO.newLinkX = 1;
+gO.newLinkY = 128;
+gO.isPortal = true;
+gameObjects38.push(gO);
+
+let map39 = [
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 55, 55, 55, 55, 55, 55, 91,  2,  2,  2,  2, 55, 55, 55, 55, 55],
+[ 55, 55, 55, 55, 55, 55, 91,  2,  2,  2,  2, 55, 55, 55, 55, 55],
+[ 55, 55, 55, 55, 55, 55, 91,  2,  2,  2,  2, 55, 55, 55,  2,  2],
+[ 54, 55, 56, 54, 55, 56, 91,  2,  2,  2,  2, 54, 55, 56,  2,  2],
+[  2,  2,  2,  2,  2,  2, 91,  2,  2,  2,  2,  2,  2,  2,  2,  2],
+[  2,  2,  2,  2,  2,  2, 91,128,  2,  2,  2,  2,  2,  2,  2,  2],
+[ 73, 73, 73, 73, 73, 73, 91, 91, 73, 73, 73, 73, 73, 73, 73, 73],
+[ 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91],
+[ 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91],
+[ 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91],
+[ 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91]];
+let gameObjects39 = [];
+
+gO = new GameObject()
+gO.x = -16;
+gO.y = 112;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 38;
+gO.newLinkX = 239;
+gO.newLinkY = 112;
+gO.isPortal = true;
+gameObjects39.push(gO);
+
+gO = new GameObject()
+gO.x = -16;
+gO.y = 128;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 38;
+gO.newLinkX = 239;
+gO.newLinkY = 128;
+gO.isPortal = true;
+gameObjects39.push(gO);
+
+gO = new GameObject()
+gO.x = 256;
+gO.y = 80;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 40;
+gO.newLinkX = 1;
+gO.newLinkY = 80;
+gO.isPortal = true;
+gameObjects39.push(gO);
+
+gO = new GameObject()
+gO.x = 256;
+gO.y = 96;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 40;
+gO.newLinkX = 1;
+gO.newLinkY = 96;
+gO.isPortal = true;
+gameObjects39.push(gO);
+
+gO = new GameObject()
+gO.x = 256;
+gO.y = 112;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 40;
+gO.newLinkX = 1;
+gO.newLinkY = 112;
+gO.isPortal = true;
+gameObjects39.push(gO);
+
+gO = new GameObject()
+gO.x = 256;
+gO.y = 128;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 40;
+gO.newLinkX = 1;
+gO.newLinkY = 128;
+gO.isPortal = true;
+gameObjects39.push(gO);
+
+gO = new GameObject()
+gO.x = 112;
+gO.y = 48;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 23;
+gO.newLinkX = 112;
+gO.newLinkY = 223;
+gO.isPortal = true;
+gameObjects39.push(gO);
+
+gO = new GameObject()
+gO.x = 128;
+gO.y = 48;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 23;
+gO.newLinkX = 128;
+gO.newLinkY = 223;
+gO.isPortal = true;
+gameObjects39.push(gO);
+
+gO = new GameObject()
+gO.x = 144;
+gO.y = 48;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 23;
+gO.newLinkX = 144;
+gO.newLinkY = 223;
+gO.isPortal = true;
+gameObjects39.push(gO);
+
+gO = new GameObject()
+gO.x = 160;
+gO.y = 48;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 23;
+gO.newLinkX = 160;
+gO.newLinkY = 223;
+gO.isPortal = true;
+gameObjects39.push(gO);
+
+let map40 = [
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19],
+[ 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19],
+[  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2, 19,  2],
+[  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2, 25,  2,  2,  2,  2],
+[  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2, 25,  2,  2],
+[  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2, 25,  2,  2,  2,  2],
+[ 73, 73, 79, 79, 79, 79, 80,  2,  2,  2,  2,  2,  2, 25,  2,  2],
+[ 91, 91, 97, 97, 97, 97, 98,  2,  2,  2,  2, 25,  2,  2,  2,  2],
+[ 91, 91, 97, 97, 97, 97, 98,  2,  2,  2,  2,  2,  2,  2, 19,  2],
+[ 91, 91, 91, 91, 91, 91, 92,  2,  2, 19, 19, 19, 19, 19, 19, 19],
+[ 91, 91, 91, 91, 91, 91, 92,  2,  2, 19, 19, 19, 19, 19, 19, 19]];
+let gameObjects40 = [];
+
+gO = new GameObject()
+gO.x = -16;
+gO.y = 80;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 39;
+gO.newLinkX = 239;
+gO.newLinkY = 80;
+gO.isPortal = true;
+gameObjects40.push(gO);
+
+gO = new GameObject()
+gO.x = -16;
+gO.y = 96;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 39;
+gO.newLinkX = 239;
+gO.newLinkY = 96;
+gO.isPortal = true;
+gameObjects40.push(gO);
+
+gO = new GameObject()
+gO.x = -16;
+gO.y = 112;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 39;
+gO.newLinkX = 239;
+gO.newLinkY = 112;
+gO.isPortal = true;
+gameObjects40.push(gO);
+
+gO = new GameObject()
+gO.x = -16;
+gO.y = 128;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 39;
+gO.newLinkX = 239;
+gO.newLinkY = 128;
+gO.isPortal = true;
+gameObjects40.push(gO);
+
+gO = new GameObject()
+gO.x = 256;
+gO.y = 80;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 41;
+gO.newLinkX = 1;
+gO.newLinkY = 80;
+gO.isPortal = true;
+gameObjects40.push(gO);
+
+gO = new GameObject()
+gO.x = 256;
+gO.y = 96;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 41;
+gO.newLinkX = 1;
+gO.newLinkY = 96;
+gO.isPortal = true;
+gameObjects40.push(gO);
+
+gO = new GameObject()
+gO.x = 256;
+gO.y = 112;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 41;
+gO.newLinkX = 1;
+gO.newLinkY = 112;
+gO.isPortal = true;
+gameObjects40.push(gO);
+
+gO = new GameObject()
+gO.x = 256;
+gO.y = 128;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 41;
+gO.newLinkX = 1;
+gO.newLinkY = 128;
+gO.isPortal = true;
+gameObjects40.push(gO);
+
+gO = new GameObject()
+gO.x = 256;
+gO.y = 144;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 41;
+gO.newLinkX = 1;
+gO.newLinkY = 144;
+gO.isPortal = true;
+gameObjects40.push(gO);
+
+gO = new GameObject()
+gO.x = 256;
+gO.y = 160;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 41;
+gO.newLinkX = 1;
+gO.newLinkY = 160;
+gO.isPortal = true;
+gameObjects40.push(gO);
+
+gO = new GameObject()
+gO.x = 256;
+gO.y = 176;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 41;
+gO.newLinkX = 1;
+gO.newLinkY = 176;
+gO.isPortal = true;
+gameObjects40.push(gO);
+
+gO = new GameObject()
+gO.x = 112;
+gO.y = 224;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 56;
+gO.newLinkX = 112;
+gO.newLinkY = 65;
+gO.isPortal = true;
+gameObjects40.push(gO);
+
+gO = new GameObject()
+gO.x = 128;
+gO.y = 224;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 56;
+gO.newLinkX = 128;
+gO.newLinkY = 65;
+gO.isPortal = true;
+gameObjects40.push(gO);
+
+let map41 = [
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22],
+[ 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55],
+[ 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55],
+[ 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58],
+[ 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58],
+[ 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58],
+[ 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58],
+[ 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58],
+[ 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58],
+[ 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58],
+[ 37, 37, 37, 37, 37, 37, 37, 37, 37, 37, 37, 37, 37, 37, 37, 37],
+[ 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55]];
+let gameObjects41 = [];
+
+gO = new GameObject()
+gO.x = -16;
+gO.y = 80;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 40;
+gO.newLinkX = 239;
+gO.newLinkY = 80;
+gO.isPortal = true;
+gameObjects41.push(gO);
+
+gO = new GameObject()
+gO.x = -16;
+gO.y = 96;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 40;
+gO.newLinkX = 239;
+gO.newLinkY = 96;
+gO.isPortal = true;
+gameObjects41.push(gO);
+
+gO = new GameObject()
+gO.x = -16;
+gO.y = 112;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 40;
+gO.newLinkX = 239;
+gO.newLinkY = 112;
+gO.isPortal = true;
+gameObjects41.push(gO);
+
+gO = new GameObject()
+gO.x = -16;
+gO.y = 128;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 40;
+gO.newLinkX = 239;
+gO.newLinkY = 128;
+gO.isPortal = true;
+gameObjects41.push(gO);
+
+gO = new GameObject()
+gO.x = -16;
+gO.y = 144;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 40;
+gO.newLinkX = 239;
+gO.newLinkY = 144;
+gO.isPortal = true;
+gameObjects41.push(gO);
+
+gO = new GameObject()
+gO.x = -16;
+gO.y = 160;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 40;
+gO.newLinkX = 239;
+gO.newLinkY = 160;
+gO.isPortal = true;
+gameObjects41.push(gO);
+
+gO = new GameObject()
+gO.x = -16;
+gO.y = 176;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 40;
+gO.newLinkX = 239;
+gO.newLinkY = 176;
+gO.isPortal = true;
+gameObjects41.push(gO);
+
+gO = new GameObject()
+gO.x = 256;
+gO.y = 80;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 42;
+gO.newLinkX = 1;
+gO.newLinkY = 80;
+gO.isPortal = true;
+gameObjects41.push(gO);
+
+gO = new GameObject()
+gO.x = 256;
+gO.y = 96;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 42;
+gO.newLinkX = 1;
+gO.newLinkY = 96;
+gO.isPortal = true;
+gameObjects41.push(gO);
+
+gO = new GameObject()
+gO.x = 256;
+gO.y = 112;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 42;
+gO.newLinkX = 1;
+gO.newLinkY = 112;
+gO.isPortal = true;
+gameObjects41.push(gO);
+
+gO = new GameObject()
+gO.x = 256;
+gO.y = 128;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 42;
+gO.newLinkX = 1;
+gO.newLinkY = 128;
+gO.isPortal = true;
+gameObjects41.push(gO);
+
+gO = new GameObject()
+gO.x = 256;
+gO.y = 144;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 42;
+gO.newLinkX = 1;
+gO.newLinkY = 144;
+gO.isPortal = true;
+gameObjects41.push(gO);
+
+gO = new GameObject()
+gO.x = 256;
+gO.y = 160;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 42;
+gO.newLinkX = 1;
+gO.newLinkY = 160;
+gO.isPortal = true;
+gameObjects41.push(gO);
+
+gO = new GameObject()
+gO.x = 256;
+gO.y = 176;
+gO.width = 16;
+gO.height = 16;
+gO.newMap = 42;
+gO.newLinkX = 1;
+gO.newLinkY = 176;
+gO.isPortal = true;
+gameObjects41.push(gO);
