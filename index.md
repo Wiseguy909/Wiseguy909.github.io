@@ -4,30 +4,30 @@ This is where you can select what game or program to use. Some of them are not f
 
 ### D&D App
 -This is a character sheet storage system that currently requires manual input, so you might as well use paper, but it will be updated in the future for a character creator and spell sheets.
-[D&D App](Wiseguy909.github.io/D&D)
+[D&D App](D&D)
 
 ### Games
 -Brickbreaker, one of the first games I made, is fully functional and ready to play. It's a classic game in a slightly different form.
-[Brickbreaker](Wiseguy909.github.io/brickBreaker)
+[Brickbreaker](brickBreaker)
 
 -A simple game to follow up is Tic Tac Toe with the perfect AI that is impossible to beat. You will be stuck with infinite ties and losses.
-[Tic Tac Toe](Wiseguy909.github.io/TicTacToe)
+[Tic Tac Toe](TicTacToe)
 
 -Space Invasion.
-[Space Invasion.](Wiseguy909.github.io/spaceInvasion/spaceInvasion)
+[Space Invasion.](spaceInvasion/spaceInvasion)
 
 -A classic Zelda remake that is incomplete but still good enough to include here.
-[Zelda](Wiseguy909.github.io/Zelda/zelda)
+[Zelda](Zelda/zelda)
 
 -The aptly named AliensParachutingFromTheSkyAndYouHaveToKillThem is exactly as it seems. It is basically missile command.
-[AliensParachutingFromTheSkyAndYouHaveToKillThem](Wiseguy909.github.io/aliensParachutingFromTheSkyAndYouHaveToKillThem)
+[AliensParachutingFromTheSkyAndYouHaveToKillThem](aliensParachutingFromTheSkyAndYouHaveToKillThem)
 
 -An open world roguelike game that is fully explorable, but with no real goal and few enemies.
-[Roguelike](Wiseguy909.github.io/roguelike)
+[Roguelike](roguelike)
 
 ### Button Games
 -Press the button, a new button is born. Repeat.
-[Infinity Button](Wiseguy909.github.io/infinityButton)
+[Infinity Button](infinityButton)
 
 -Same as above, but hold down the mouse and watch the world burn. Or at least, your computer after a couple of minutes.
-[Infinity Button: Hold Edition](Wiseguy909.github.io/infinityButtonHold)
+[Infinity Button: Hold Edition](infinityButtonHold)
